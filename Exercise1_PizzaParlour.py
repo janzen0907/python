@@ -5,43 +5,70 @@ pizzas = [
         'type': 'Pepperoni', 
         'price': 12.50, 
         'sauce': 'red', 
-        'toppings': ['pepperoni']}, 
+        'toppings': ['pepperoni']
+    },
     {
-    'type': 'Cheese', 'price': 11.25,
-    'sauce': 'red', 'toppings': []}, 'pizza_type': 'Chicken Bacon Ranch',
-          'price': 14.10, 'sauce': 'white', 'toppings': 'chicken, bacon, ranch',
-          'pizza_type': 'Canadian', 'price': 13.50, 'sauce': 'red', 'toppings':
-          'sausage, bacon, onion'}
+        'type': 'Cheese', 
+        'price': 11.25,
+        'sauce': 'red', 
+        'toppings': []
+    },
+    {
+        'type': 'Chicken Bacon Ranch',
+        'price': 14.10, 
+        'sauce': 'white', 
+        'toppings': ['chicken', 'bacon', 'ranch']
+    },
+    {
+        'type': 'Canadian', 
+        'price': 13.50, 
+        'sauce': 'red', 
+        'toppings': ['sausage', 'bacon', 'onion']
+    },
+
 ]
 
-orders = []
-message = 0
-while message != 4:
+pizza_order = []
 
-    message = input('Please select from the following options; 1: Add pizza to order, 2:Check order for allergen, 3:Print Order, 4: quit')
-    int(message)
-    print(message)
-    if message == 1:
-        print(pizzas['pizza_type'])
-        pizza_to_add = input("What pizza would you like to add to your order?")
-        orders.append(pizza_to_add)
-        orders.append(pizzas['price'])
-    elif message == 2:
-        allergy = input('What allergens would you like to check for?')
-        if pizzas['toppings'] in allergy:
-            print(f'{pizzas["pizza_type"]} contains the following allergens ')
-        elif allergy == 'tomato':
-            if pizzas['sauce'] == 'red':
-                print(f'{pizzas["pizza_type"]} contains the following allergens ')
-        elif allergy == 'dairy' or 'cheese':
-            if pizzas['sauce'] == 'white':
-                print(f'{pizzas["pizza_type"]} contains the following allergens ')
-        else:
-            print("No allergens in this order")
-    if message == 3:
-        for order in orders:
-            print(order)
-    if message == 4:
+menu = 'Choose one of the following options:\n'
+menu += '\n1: Add pizza to order'
+menu += '\n2:Check order for allergen'
+menu += '\n3:Print Order'
+menu += '\n4: quit'
+
+
+while True:
+    option = int(input(menu))
+    if option == 1:
+        print('Select a pizza to order')
+        index = 1
+        for pizza in pizzas:
+            print(f"\n{index}: {pizza['type']}")
+            index += 1
+        pizza_choice = int(input('Enter the number of pizza to order: '))
+        pizza_order.append(pizzas[pizza_choice-1])
+    elif option == 2:
+        allergen = input('What allergens would you like to check for?')
+        allergen_present = []
+        for pizza in pizza_order:
+            if allergen in pizza['toppings']:
+                allergen_present.append(pizza)
+            elif allergen == 'tomato' and pizza['sauce'] == 'red':
+                allergen_present.append(pizza)
+        if allergen_present:
+            print("The following pizzas in your order have your allergens: ")
+            for pizza in allergen_present:
+                print(pizza['type'])
+        else: 
+            print('Allergen is not in your order')
+    elif option == 3:
+        print('Your Order: ')
+        total = 0
+        for pizza in pizza_order:
+            total += pizza['price']
+            print(f"\n{pizza['type']}")
+        print(f'\nTotal: {total}')
+    elif option == 4:
         quit()
 
     
