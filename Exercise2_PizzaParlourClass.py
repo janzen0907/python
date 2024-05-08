@@ -11,7 +11,7 @@ class Pizza:
     def has_allergen(self, allergens):
         if self.toppings == allergens:
             return True
-        elif allergens == 'dairy' or 'tomatoes'
+        elif allergens == 'dairy' or 'tomatoes':
             return True
         return False
     
@@ -25,9 +25,34 @@ class Pizza:
 class WhitePizza(Pizza):
     def __init__(self, name, price, toppings):
         super().__init__(name, price, toppings)
+
+    def has_allergen(self, allergens):
+        if self.toppings == allergens:
+            return True
+        elif allergens == 'dairy':
+            return True
+        return False
+    
+class PizzaOrder(Pizza):
     
 
-                    
-                
+    def __init__(self, name, price, toppings):
+        super().__init__(name, price, toppings) 
+    
+    
+    def add_pizza(pizzaToAdd):
+        pizzas = []
         
-
+        try:
+            if isinstance(pizzaToAdd, Pizza):
+              pizzas.append(pizzaToAdd)
+        except TypeError as te:
+            print("Must pass in a Pizza object")
+    
+    # Should have a print_order method which prints out the order as a list of the pizzas
+    def print_order():
+        pass
+    
+    # Should have a get_total method which returns the sum of all the prices of the pizzas
+    def get_total():
+        pass

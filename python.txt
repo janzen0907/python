@@ -1,0 +1,4 @@
+We're learning Python
+And Now we are learning more about it 
+
+Python is easy
