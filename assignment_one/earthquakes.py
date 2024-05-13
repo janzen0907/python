@@ -73,8 +73,8 @@ class QuakeData:
 
     def set_location_filter(latitude, longitude, distance):
         '''Returns Quakes within the distance the distance of the latitude and longitude being passed in'''
-         
-
+        # Test commit
+        junk = 'delete me'
 
 
 
